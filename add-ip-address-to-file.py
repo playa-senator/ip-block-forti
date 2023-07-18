@@ -1,5 +1,4 @@
 import ipaddress
-import os
 
 def is_valid_ip(ip):
     try:
@@ -32,7 +31,7 @@ def add_and_sort_ip(filename, ip):
 filename = "ip-address-of-attackers.txt"
 
 while True:
-    ip = input("Introduce una dirección IP (o 'q' para terminar): ")
+    ip = input("Introduce una dirección IP (o 'n' para terminar): ")
     
     if ip == 'q':
         break
