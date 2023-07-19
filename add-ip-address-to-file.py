@@ -31,9 +31,9 @@ def add_and_sort_ip(filename, ip):
 filename = "ip-address-of-attackers.txt"
 
 while True:
-    ip = input("Introduce una dirección IP (o 'n' para terminar): ")
+    ip = input("Introduce una dirección IP (o 'q' para terminar): ")
     
-    if ip == 'n':
+    if ip == 'q':
         break
     
     if is_valid_ip(ip):
