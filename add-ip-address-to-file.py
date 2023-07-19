@@ -33,7 +33,7 @@ filename = "ip-address-of-attackers.txt"
 while True:
     ip = input("Introduce una dirección IP (o 'n' para terminar): ")
     
-    if ip == 'q':
+    if ip == 'n':
         break
     
     if is_valid_ip(ip):
