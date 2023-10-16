@@ -1,8 +1,14 @@
 #-------------------------------------------------------------------------------------------------------------------
 # Importación de biblioteca/módulo para el script
 
-# Biblioteca/módulo con funciones relacionadas con direcciones IP
+# Biblioteca / módulo con funciones relacionadas con direcciones IP
 import ipaddress
+
+# Biblioteca / módulo para funciones relacionadas con el sistema operativo que usa el script
+import os
+
+# Biblioteca / módulo para identificar el sistema operativo
+import platform
 
 
 #-------------------------------------------------------------------------------------------------------------------
@@ -14,6 +20,18 @@ filename = "ip-address-of-attackers.txt"
 
 #-------------------------------------------------------------------------------------------------------------------
 # Declaración de funciones
+
+# Función para realizar la limpieza de pantalla al principio del script
+def clear_screen():
+    operative_system = platform.system()
+    if (operative_system != 'Linux') and (operative_system != 'Windows'):
+        print('Neither Linux or Windows, the script will stop the execution')
+        exit(1)
+    elif (operative_system == 'Linux'):
+        os.system('clear')
+    elif (operative_system == 'Windows'):
+        os.system('cls')
+
 
 # Función para comprobar si la inserción es una dirección IP válida
 def is_valid_ip(ip):
@@ -51,6 +69,7 @@ def add_and_sort_ip(filename, ip):
 
 # Función principal que pregunta por una IP y llama al resto de funciones
 def main():
+    clear_screen()
     while True:
         ip = input("Introduce una dirección IP (o 'q' para terminar): ")
         
