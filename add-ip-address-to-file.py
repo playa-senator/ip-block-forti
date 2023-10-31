@@ -24,13 +24,13 @@ filename = "ip-address-of-attackers.txt"
 # Función para realizar la limpieza de pantalla al principio del script
 def clear_screen():
     operative_system = platform.system()
-    if (operative_system != 'Linux') and (operative_system != 'Windows'):
-        print('Neither Linux or Windows, the script will stop the execution')
-        exit(1)
-    elif (operative_system == 'Linux'):
+    if operative_system == 'Linux' or operative_system == 'Darwin' or operative_system == 'FreeBSD' or operative_system == 'Unix':
         os.system('clear')
-    elif (operative_system == 'Windows'):
+    elif operative_system == 'Windows':
         os.system('cls')
+    else:
+        # Intenta con 'clear' para otros sistemas operativos no reconocidos explícitamente
+        os.system('clear')
 
 
 # Función para comprobar si la inserción es una dirección IP válida
