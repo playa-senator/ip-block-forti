@@ -1,35 +1,38 @@
-#-------------------------------------------------------------------------------------------------------------------
-# Importación de biblioteca/módulo para el script
+# ------------------------------------------------------------------------------
+# Importación de módulos
 
-# Biblioteca / módulo con funciones relacionadas con direcciones IP
+# Módulo con funciones relacionadas con direcciones IP
 import ipaddress
 
-# Biblioteca / módulo para funciones relacionadas con el sistema operativo que usa el script
+# Módulo para funciones relacionadas con el sistema operativo
 import os
 
-# Biblioteca / módulo para identificar el sistema operativo
+# Módulo para identificar el sistema operativo
 import platform
 
 
-#-------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Declaración de variables
 
 # Variable para especificar el fichero de entrada de las direcciones IP
 filename = "ip-address-of-attackers.txt"
 
 
-#-------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Declaración de funciones
 
 # Función para realizar la limpieza de pantalla al principio del script
 def clear_screen():
     operative_system = platform.system()
-    if operative_system == 'Linux' or operative_system == 'Darwin' or operative_system == 'FreeBSD' or operative_system == 'Unix':
+    if (
+        operative_system == 'Linux' or operative_system == 'Darwin'
+        or operative_system == 'FreeBSD' or operative_system == 'Unix'
+    ):
         os.system('clear')
     elif operative_system == 'Windows':
         os.system('cls')
     else:
-        # Intenta con 'clear' para otros sistemas operativos no reconocidos explícitamente
+        # Intenta con 'clear' para otros sistemas operativos no reconocidos
         os.system('clear')
 
 
@@ -42,7 +45,7 @@ def is_valid_ip(ip):
         return False
 
 
-# Función para comprobar si la dirección IP a insertar existe o no en el fichero de direcciones
+# Función para comprobar si la dirección IP a insertar existe en el fichero
 def ip_exists(filename, ip):
     with open(filename, 'r') as f:
         lines = f.readlines()
@@ -50,7 +53,7 @@ def ip_exists(filename, ip):
     return ip in [line.strip() for line in lines]
 
 
-# Función para añadir la dirección IP al fichero en el caso de no existir y ordena el contenido del fichero
+# Función para añadir la dirección IP al fichero y ordenar el contenido
 def add_and_sort_ip(filename, ip):
     if not ip_exists(filename, ip):
         with open(filename, 'a+') as f:
@@ -72,19 +75,22 @@ def main():
     clear_screen()
     while True:
         ip = input("Introduce una dirección IP (o 'q' para terminar): ")
-        
+
         if ip == 'q':
             break
-        
+
         if is_valid_ip(ip):
             add_and_sort_ip(filename, ip)
         else:
-            print("La dirección IP '{}' no es válida. Por favor, introduce una dirección IP válida.".format(ip))
+            print(
+                "La dirección IP '{}' no es válida. Por favor, introduce una "
+                "dirección IP válida.".format(ip)
+            )
 
     print("Script terminado.")
 
 
-#-------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Ejecución de la función principal
 
 if __name__ == "__main__":
