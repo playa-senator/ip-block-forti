@@ -26,7 +26,8 @@ def clear_screen():
     operative_system = platform.system()
     if (
         operative_system == 'Linux' or operative_system == 'Darwin'
-        or operative_system == 'FreeBSD' or operative_system == 'Unix'
+        or
+        operative_system == 'FreeBSD' or operative_system == 'Unix'
     ):
         os.system('clear')
     elif operative_system == 'Windows':
